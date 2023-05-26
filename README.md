@@ -16,15 +16,20 @@ This is a simple Food Order Management application built with FastAPI and MySQL.
 # Getting Started
 1. Clone the repository:
 ```
-git clone <repository-url>
+git clone git@github.com:shobhamrj/food-order-app.git
 ```
 2. Install the Python dependencies:
 ```
 pip install -r requirements.txt
 ```
-3. Create a MySQL database and update the database configuration in the app.py file:
+3. Update the database configuration in a new .env file:
 ```
-database = databases.Database("mysql://<username>:<password>@<host>/<database>")
+DB_HOST=""
+DB_PASS=""
+DB_USER=""
+DB_DATABASE=""
+DB_PORT=""
+
 ```
 4. Create the database and the tables by running the queries in food_order.sql:
 
@@ -37,8 +42,15 @@ uvicorn app:app --reload
 http://localhost:8000
 ```
 7. FastAPI also generated a Swagger Docs for the API endpoints.
+
 # Directory Structure
-app.py: The main FastAPI application file.
+main.py: The main FastAPI application file, with route handlers.
+config.py: contains a class to populate environment variables
+auth.py: Utilities for handling token validations and authentication.
+db.py: Database configurations
+models.py: models representing FoodItems, User and Order.
+food_order.sql: Database querries for generating tables.
+requirements.txt: dependencies for this application.
 README.md: This README file.
 
 # Improvements
