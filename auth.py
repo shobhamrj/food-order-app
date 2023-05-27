@@ -1,3 +1,4 @@
+from typing import Tuple
 import jwt
 from passlib.hash import bcrypt
 from datetime import timedelta, datetime
@@ -31,7 +32,7 @@ def create_token(user_id: int) -> str:
     return jwt.encode(payload, JWT_SECRET, algorithm=JWT_ALGORITHM)
 
 
-def get_current_user(credentials: HTTPAuthorizationCredentials = Depends(security)):
+def get_current_user(credentials: HTTPAuthorizationCredentials = Depends(security)) -> Tuple[int]:
     token = credentials.credentials
     try:
         payload = jwt.decode(token, JWT_SECRET, algorithms=[JWT_ALGORITHM])

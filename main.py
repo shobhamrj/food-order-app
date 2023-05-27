@@ -1,3 +1,4 @@
+from typing import Tuple
 from fastapi import FastAPI, HTTPException, Depends
 from passlib.hash import bcrypt
 from fastapi.middleware.cors import CORSMiddleware
@@ -22,8 +23,6 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
-
 
 
 # @app.get("/signup", response_class=HTMLResponse)
@@ -115,7 +114,7 @@ async def get_order(order_id: int, user: User = Depends(get_current_user)):
 
 
 @app.put("/v1/order/{order_id}")
-async def update_order(order_id: int, order: Order, user: User = Depends(get_current_user)):
+async def update_order(order_id: int, order: Order, user: Tuple[int] = Depends(get_current_user)):
     cursor.execute("SELECT * FROM orders WHERE id = %s AND user_id = %s", (order_id, user[0]))
     existing_order = cursor.fetchone()
     if not existing_order:

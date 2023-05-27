@@ -14,6 +14,6 @@ class FoodItem(BaseModel):
 
 
 class Order(BaseModel):
-    user_id: int
+    user_id: int | None = None
     food_items: list[FoodItem]
     total_price: float
