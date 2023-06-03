@@ -6,16 +6,7 @@ from models import *
 from auth import get_current_user, authenticate_user, create_token
 from db import cursor, mysql_conn
 
-# from fastapi.templating import Jinja2Templates
-# from fastapi.responses import HTMLResponse
-# from fastapi.staticfiles import StaticFiles
-
-
 app = FastAPI()
-
-# templates = Jinja2Templates(directory="templates")
-# app.mount('/static', StaticFiles(directory='./templates'), name='js')
-
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
@@ -23,11 +14,6 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
-
-# @app.get("/signup", response_class=HTMLResponse)
-# async def signup(request: Request):
-#     return templates.TemplateResponse("signup.html", {"request": request})
 
 
 @app.post("/v1/signup")
